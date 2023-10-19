@@ -1,8 +1,8 @@
-for c in 100 300 1000
+#executable=./thundersvm/build/bin/thundersvm-train
+executable=./libsvm/svm-train
+
+for c in 0.1 1 10 100 1000
 do
-	for g in 0.001 0.0003 0.0001
-	do
-		echo "-------------------------------------------"
-		./thundersvm/build/bin/thundersvm-train -s 3 -c $c -g $g -v 5 wind.scale
-	done
+	echo "-------------------------------------------"
+	$executable -s 3 -t 2 -c $c -v 5 -e 0.0001 -h 0 wind.scale
 done

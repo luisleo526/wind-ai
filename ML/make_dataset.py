@@ -35,7 +35,7 @@ for index in indices[:num_of_trains]:
     vel = sample['vel']
     x, y, p = sample['data']
     for i in range(x.shape[0]):
-        x_train.append(np.append(np.append(x, y), np.array([angle, vel, x[i], y[i]])))
+        x_train.append(np.append(np.array([angle, vel, x[i], y[i]]), np.append(x, y)))
         y_train.append(p[i])
 
 x_test = []
@@ -48,7 +48,7 @@ for index in indices[num_of_trains:]:
     vel = sample['vel']
     x, y, p = sample['data']
     for i in range(x.shape[0]):
-        x_test.append(np.append(np.append(x, y), np.array([angle, vel, x[i], y[i]])))
+        x_test.append(np.append(np.array([angle, vel, x[i], y[i]]), np.append(x, y)))
         y_test.append(p[i])
 
 # with open("./train.dat", "w") as file:
