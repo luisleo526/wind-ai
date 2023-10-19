@@ -1,4 +1,3 @@
-#executable=./thundersvm/build/bin/thundersvm-train
 executable=./libsvm/svm-train
 
 for c in 0.1 1 10 100 1000
