@@ -51,18 +51,32 @@ for index in indices[num_of_trains:]:
         x_test.append(np.append(np.append(x, y), np.array([angle, vel, x[i], y[i]])))
         y_test.append(p[i])
 
-with open("./train.dat", "w") as file:
+# with open("./train.dat", "w") as file:
+#     for i in range(len(x_train)):
+#         features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_train[i])])
+#         if i + 1 != len(x_train):
+#             file.write(f"{y_train[i]:.4f} {features}\n")
+#         else:
+#             file.write(f"{y_train[i]:.4f} {features}")
+
+# with open("./test.dat", "w") as file:
+#     for i in range(len(x_test)):
+#         features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_test[i])])
+#         if i + 1 != len(x_test):
+#             file.write(f"{y_test[i]:.4f} {features}\n")
+#         else:
+#             file.write(f"{y_test[i]:.4f} {features}")
+
+with open("./wind.dat", "w") as file:
+    
     for i in range(len(x_train)):
         features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_train[i])])
-        if i + 1 != len(x_train):
-            file.write(f"{y_train[i]:.4f} {features}\n")
-        else:
-            file.write(f"{y_train[i]:.4f} {features}")
+        file.write(f"{y_train[i]:.4f} {features}\n")
 
-with open("./test.dat", "w") as file:
     for i in range(len(x_test)):
         features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_test[i])])
         if i + 1 != len(x_test):
             file.write(f"{y_test[i]:.4f} {features}\n")
         else:
             file.write(f"{y_test[i]:.4f} {features}")
+
