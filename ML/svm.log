@@ -1,0 +1,22 @@
+-------------------------------------------
+C=0.01
+Mean squared error = 0.00696193 (regression)
+Squared correlation coefficient = 0.94806 (regression)
+-------------------------------------------
+C=0.1
+Mean squared error = 0.00636792 (regression)
+Squared correlation coefficient = 0.951658 (regression)
+-------------------------------------------
+C=1
+Mean squared error = 0.00600011 (regression)
+Squared correlation coefficient = 0.953288 (regression)
+-------------------------------------------
+C=10
+Mean squared error = 0.00514566 (regression)
+Squared correlation coefficient = 0.959393 (regression)
+-------------------------------------------
+C=100
+Mean squared error = 0.00491551 (regression)
+Squared correlation coefficient = 0.961457 (regression)
+-------------------------------------------
+C=1000
