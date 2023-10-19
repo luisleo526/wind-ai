@@ -1,0 +1,37 @@
+backbone:
+  type: torchvision.models.resnet34
+  params:
+    weights: null
+features_dims: [ 128, 256, 512 ]
+fpn_channels: 64
+num_scalars: 2
+
+layers:
+  - type: monai.networks.blocks.Convolution
+    params:
+      spatial_dims: 2
+      in_channels: 66
+      out_channels: 32
+      conv_only: False
+      norm: BATCH
+  - type: monai.networks.blocks.Convolution
+    params:
+      spatial_dims: 2
+      in_channels: 32
+      out_channels: 16
+      conv_only: False
+      norm: BATCH
+  - type: monai.networks.blocks.Convolution
+    params:
+      spatial_dims: 2
+      in_channels: 16
+      out_channels: 4
+      conv_only: False
+      norm: BATCH
+  - type: monai.networks.blocks.Convolution
+    params:
+      spatial_dims: 2
+      in_channels: 4
+      out_channels: 1
+      conv_only: False
+      norm: BATCH

@@ -1,0 +1,5 @@
+defaults:
+  - data: default
+  - general: default
+  - model: resnet34
+  - train: default

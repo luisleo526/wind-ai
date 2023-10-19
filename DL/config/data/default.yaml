@@ -1,0 +1,6 @@
+experiment_info: "../data/file1.csv"
+experiment_data: "../data/file2.csv"
+image_size: 384
+domain_size: 3000
+r_min: 5
+r_max: 10
