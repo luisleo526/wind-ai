@@ -1,6 +1,7 @@
 import csv
 import math
 import numpy as np
+from pathlib import Path
 
 data = {}
 with open("../data/file1.csv", newline='') as csv_file:
@@ -22,61 +23,17 @@ data = list(data.values())
 for exp in data:
     exp['data'] = np.transpose(np.array(exp['data']), (1, 0))
 
-num_of_trains = int(len(data) * 0.8)
-indices = np.random.permutation(len(data))
 
-x_train = []
-y_train = []
+Path("./data").mkdir(parents=True, exist_ok=True)
 
-for index in indices[:num_of_trains]:
-    sample = data[index]
+for k in range(5):
 
-    angle = sample['angle']
-    vel = sample['vel']
-    x, y, p = sample['data']
-    for i in range(x.shape[0]):
-        x_train.append(np.append(np.array([angle, vel, x[i], y[i]]), np.append(x, y)))
-        y_train.append(p[i])
-
-x_test = []
-y_test = []
-
-for index in indices[num_of_trains:]:
-    sample = data[index]
-
-    angle = sample['angle']
-    vel = sample['vel']
-    x, y, p = sample['data']
-    for i in range(x.shape[0]):
-        x_test.append(np.append(np.array([angle, vel, x[i], y[i]]), np.append(x, y)))
-        y_test.append(p[i])
-
-with open("./train.dat", "w") as file:
-    for i in range(len(x_train)):
-        features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_train[i])])
-        if i + 1 != len(x_train):
-            file.write(f"{y_train[i]:.4f} {features}\n")
-        else:
-            file.write(f"{y_train[i]:.4f} {features}")
-
-with open("./test.dat", "w") as file:
-    for i in range(len(x_test)):
-        features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_test[i])])
-        if i + 1 != len(x_test):
-            file.write(f"{y_test[i]:.4f} {features}\n")
-        else:
-            file.write(f"{y_test[i]:.4f} {features}")
-
-with open("./wind.dat", "w") as file:
-    
-    for i in range(len(x_train)):
-        features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_train[i])])
-        file.write(f"{y_train[i]:.4f} {features}\n")
-
-    for i in range(len(x_test)):
-        features = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(x_test[i])])
-        if i + 1 != len(x_test):
-            file.write(f"{y_test[i]:.4f} {features}\n")
-        else:
-            file.write(f"{y_test[i]:.4f} {features}")
-
+    with open(f"./data/{k}.txt", "w") as file:
+        for sample in data[k::5]:
+            angle = sample['angle']
+            vel = sample['vel'] 
+            x, y, p = sample['data']
+            for i in range(x.shape[0]):
+                feature = [angle, vel, x[i], y[i] ] + x.tolist() + y.tolist()
+                feature = ' '.join([f"{ind + 1:d}:{x:.4f}" for ind, x in enumerate(feature)])
+                file.write(f"{p[i]:.4f} {feature}\n")
