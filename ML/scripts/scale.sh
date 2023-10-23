@@ -10,4 +10,7 @@ do
 	cat data/$i.txt >> data/fold$i/test.txt
 	./libsvm/svm-scale -y 0 1 -s data/range data/fold$i/train.txt > data/fold$i/train.scale
 	./libsvm/svm-scale -y 0 1 -s data/range data/fold$i/test.txt > data/fold$i/test.scale
+	rm data/fold$i/*.txt
 done
+
+rm data/*.txt data/all.scale

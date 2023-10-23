@@ -1,6 +1,3 @@
-rm -rf libsym_output
-mkdir -p libsvm_output
-
 for c in 0.01 0.1 1 10 100
 do
 	for k in 0 1 2 3 4
